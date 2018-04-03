@@ -2,33 +2,29 @@
 import http.client
 import json
 
-#incluyo una cabecera con 'status' y su razón que no se pide que se imprima por pantalla.
-#esta información sobre el cliente es útil para estadísticas del propio servidor.
+#la cabecera es un diccionario con una clave y un valor.Se utiliza para decirle al servidor que tipo de navegador estamos usando.
 headers = {'User-Agent': 'http-client'}
 
-
 #entablamos la conexión con el servidor.
+#la funcion HTTPSConnection es del módulo http.client. Con ella podemos entablar conexión con el protocolo https.
 llamar_servidor = http.client.HTTPSConnection("api.fda.gov")
-#con la función request le pedimos al servidor la informacion contenida en formato json.
-llamar_servidor.request("GET", "/drug/label.json", None, headers)
-respuesta = llamar_servidor.getresponse()
 
-#obteniendo respuesta del servidor...
+#con la función request hacemos una petición de tipo GET al servidor y obtenemos la info del medicamento en formato json.
+llamar_servidor.request("GET", "/drug/label.json", None, headers)
+
+#obtenemos respuesta...
+respuesta = llamar_servidor.getresponse()
 
 contenido_label = respuesta.read().decode("utf-8")
 # gracias a .read podemos leer la info que nos hemos descargado.
-# gracias a decode poemos leer tildes, ñ...
+# gracias a .decode("utf-8") podemos leer tildes, ñ...
 llamar_servidor.close()  # finalizamos la conexión con el servidor.
 
+#a partir de aquí tratamos toda la info(diccionarios y listas mezclados) que hemo obtenido en la respuesta.
 
 label_estructurado = json.loads(contenido_label)
-# el load sirve para poderlo indexar con corchetes... sino estaría escrito como un string
+# el load sirve para poderlo indexar con corchetes, sino estaría escrito como un string (lo estructuramos tipo python).
 informacion_medicamento = label_estructurado['results'][0]
-#la variable 'informacion_medicamento' almacena cada uno de los datos que nos ha dado el servidor sobre cada uno de los medicamentos.
-
-
-
-#para poder saber como esta estructurado el json he utilizado un editor json, de esta forma podía saber cúal era la información para cada cosa que se pedía.
 
 print (
 ' ID: ', informacion_medicamento['id'], "\n", 'Proposito: ', informacion_medicamento['purpose'], "\n", 'Fabricante: ',
