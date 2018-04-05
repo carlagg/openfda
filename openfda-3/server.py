@@ -5,7 +5,7 @@ import http.client
 import json
 
 #Puerto desde donde se lanza el servidor.
-PORT = 8001
+PORT = 8005
 
 
 
@@ -25,7 +25,7 @@ def dame_lista():
     for i in range(len(label_estructurado['results'])):
         informacion_medicamento = label_estructurado['results'][i]
         if (informacion_medicamento['openfda']):
-            print('Fabricante: ', informacion_medicamento['openfda']['generic_name'][0])
+            print('Nombre del medicamento: ', informacion_medicamento['openfda']['generic_name'][0])
             medicamentos.append(informacion_medicamento['openfda']['generic_name'][0])
 
     return medicamentos
