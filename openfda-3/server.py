@@ -5,7 +5,7 @@ import http.client
 import json
 
 #Puerto desde donde se lanza el servidor.
-PORT = 8005
+PORT = 8018
 
 
 
@@ -27,7 +27,8 @@ def dame_lista():
         if (informacion_medicamento['openfda']):
             print('Nombre del medicamento: ', informacion_medicamento['openfda']['generic_name'][0])
             medicamentos.append(informacion_medicamento['openfda']['generic_name'][0])
-
+        else:
+            medicamentos.append("Medicamento no especificado")
     return medicamentos
 
 #clase con herencia.
