@@ -1,11 +1,10 @@
-#recuperamos parte del códico de 'programa1,2,3.py'
 import http.server
 import socketserver
 import http.client
 import json
 
 #Puerto desde donde se lanza el servidor.
-PORT = 8018
+PORT = 8020
 
 
 
@@ -33,16 +32,14 @@ def dame_lista():
 
 #clase con herencia.
 class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
-
-    # GET. Este metodo se invoca automaticamente cada vez que hay una
-    # peticion GET por HTTP. El recurso que nos solicitan se encuentra en self.path
+#el método GET se invoca automaticamente cada vez que hay una peticion GET por HTTP
 
     def do_GET(self):
-        # La primera linea del mensaje de respuesta es el
-        # status. Indicamos que OK
+        #indicamos OK a la primera linea de la respuesta que es el status.
         self.send_response(200)
 
-        # En las siguientes lineas de la respuesta colocamos lascabeceras necesarias para que el cliente entienda el contenido que le enviamos (que sera HTML)
+        # En las siguientes lineas de la respuesta colocamos las cabeceras necesarias para que
+        # el cliente entienda el tipo de contenido que le enviamos (que sera HTML)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
         contenido="<html><body>"
@@ -56,9 +53,8 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 
 
 
-# El servidor comienza a aqui
-
-# Establecemos como manejador nuestra propia clase
+#el servidor comienza a aqui.
+#establecemos como manejador nuestra propia clase.
 Handler = testHTTPRequestHandler
 
 httpd = socketserver.TCPServer(("", PORT), Handler)
