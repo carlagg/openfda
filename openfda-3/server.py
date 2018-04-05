@@ -4,7 +4,7 @@ import http.client
 import json
 
 #Puerto desde donde se lanza el servidor.
-PORT = 8019
+PORT = 8022
 
 
 
@@ -45,8 +45,8 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         contenido="<html><body>"
         medicamentos=dame_lista()
         for elemento in medicamentos:
-            contenido += elemento +"<br>"
-        contenido+="</body></html>"
+            contenido += elemento + "<br>"
+        contenido += "</body></html>"
 
         self.wfile.write(bytes(contenido, "utf8"))
         return
