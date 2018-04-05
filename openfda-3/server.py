@@ -61,7 +61,8 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 Handler = testHTTPRequestHandler
 
 httpd = socketserver.TCPServer(("", PORT), Handler)
-print("serving at port", PORT)
+print("serving at port"
+      "", PORT)
 try:
     httpd.serve_forever()
 except KeyboardInterrupt:
