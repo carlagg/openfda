@@ -4,9 +4,7 @@ import http.client
 import json
 
 #Puerto desde donde se lanza el servidor.
-PORT = 8022
-
-
+PORT = 8000
 
 def dame_lista():
     medicamentos = []
@@ -27,7 +25,7 @@ def dame_lista():
             print('Nombre del medicamento: ', informacion_medicamento['openfda']['generic_name'][0])
             medicamentos.append(informacion_medicamento['openfda']['generic_name'][0])
         else:
-            medicamentos.append("Medicamento no especificado")
+            medicamentos.append("'Medicamento no especificado'")
     return medicamentos
 
 #clase con herencia.
@@ -42,11 +40,16 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         # el cliente entienda el tipo de contenido que le enviamos (que sera HTML)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
-        contenido="<html><body>"
+        #creamos el html.
+        contenido='''<html>
+            <body style = "background-color:yellow">
+                <h1>Lista de los medicamentos.</h2>
+                </body>
+                </html>'''
+
         medicamentos=dame_lista()
         for elemento in medicamentos:
-            contenido += elemento + "<br>"
-        contenido += "</body></html>"
+            contenido += '<ul><li>' + elemento + '</li></ul>' + '</br>'
 
         self.wfile.write(bytes(contenido, "utf8"))
         return
