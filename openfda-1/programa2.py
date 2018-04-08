@@ -7,7 +7,8 @@ headers = {'User-Agent': 'http-client'}
 
 llamar_servidor = http.client.HTTPSConnection("api.fda.gov")
 
-#ponemos el limite en 10 porque queremos saber el ID de los primeros 1os medicamentos. Esto se incluye dentro del recurso.
+#ponemos el limite en 10 porque queremos saber el ID de los primeros 1os medicamentos.
+#esto se incluye dentro del recurso.
 llamar_servidor.request("GET", "/drug/label.json?limit=10", None, headers)
 
 respuesta = llamar_servidor.getresponse()

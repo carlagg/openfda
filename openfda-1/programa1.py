@@ -2,7 +2,8 @@
 import http.client
 import json
 
-#la cabecera es un diccionario con una clave y un valor.Se utiliza para decirle al servidor que tipo de navegador estamos usando.
+#la cabecera es un diccionario con una clave y un valor.
+#se utiliza para decirle al servidor que tipo de navegador estamos usando.
 headers = {'User-Agent': 'http-client'}
 
 #entablamos la conexión con el servidor.
@@ -20,12 +21,13 @@ contenido_label = respuesta.read().decode("utf-8")
 # gracias a .decode("utf-8") podemos leer tildes, ñ...
 llamar_servidor.close()  # finalizamos la conexión con el servidor.
 
-#a partir de aquí tratamos toda la info(diccionarios y listas mezclados) que hemo obtenido en la respuesta.
+#a partir de aquí tratamos toda la info(diccionarios y listas mezclados) que hemos obtenido en la respuesta.
 
 label_estructurado = json.loads(contenido_label)
 # el load sirve para poderlo indexar con corchetes, sino estaría escrito como un string (lo estructuramos tipo python).
 informacion_medicamento = label_estructurado['results'][0]
 
+#imprimimos la info que nos pide el ejerccio.
 print (
 ' ID: ', informacion_medicamento['id'], "\n", 'Proposito: ', informacion_medicamento['purpose'], "\n", 'Fabricante: ',
 informacion_medicamento['openfda']['manufacturer_name'])
