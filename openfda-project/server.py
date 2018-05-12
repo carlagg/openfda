@@ -170,7 +170,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                     lista_drugs.append('Fármaco desconocido.')
 
             #Todos los datos obtenidos crearan una web gracias al método que creamos.
-            resultado_html = self.dame_web(drugs)
+            resultado_html = self.dame_web(lista_drugs)
             self.wfile.write(bytes(resultado_html, "utf8"))
             #Se devolverán al cliente como contenido html.
         elif 'searchCompany' in self.path:
