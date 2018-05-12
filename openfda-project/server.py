@@ -7,8 +7,7 @@ import json
 PORT=8000
 
 #Se crea una clase que herede a otra.
-#el metodo que está programado sólo responde al do_get.
-#para los recursos he usado más.
+#El metodo que está programado sólo responde al do_get.
 #define el coportamiento de lo que tenemos que hacer ante un http.
 class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 
