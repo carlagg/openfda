@@ -29,7 +29,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                     -
                     <form method="get" action="searchDrug">
                         <input type = "submit" value="Drug Search">
-                        <input type = "text" name="drug"></input>
+                        <input type = "text" name="active_ingredient"></input>
                         </input>
                     </form>
                    -
@@ -167,7 +167,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                 if ('generic_name' in resultado['openfda']):
                     lista_drugs.append(resultado['openfda']['generic_name'][0])
                 else:
-                    lista_drugs.append('Fármaco desconocido.')
+                    lista_drugs.append('FARMACO DESCONOCIDO.')
 
             #Todos los datos obtenidos crearan una web gracias al método que creamos.
             resultado_html = self.dame_web(lista_drugs)
@@ -224,7 +224,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                 if ('manufacturer_name' in resultado['openfda']):
                     lista_companies.append (resultado['openfda']['manufacturer_name'][0])
                 else:
-                    lista_companies.append('Compañía desconocida.')
+                    lista_companies.append('COMPAÑIA DESCONOCIDA.')
             resultado_html = self.dame_web(lista_companies)
 
             self.wfile.write(bytes(resultado_html, "utf8"))
@@ -257,7 +257,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_header('WWW-Authenticate', 'Basic realm="Mi servidor"')
             self.end_headers()
         elif 'redirect' in self.path:
-            print("Redirección a la página principal")
+            print("Redireccion a la pagina principal")
             self.send_response(301)
             self.send_header('Location', 'http://localhost:'+str(PORT))
             self.end_headers()
