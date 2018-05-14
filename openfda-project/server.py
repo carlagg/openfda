@@ -8,7 +8,7 @@ PORT=8000
 
 #Se crea una clase que herede a otra.
 #El metodo que está programado sólo responde al do_get.
-#define el coportamiento de lo que tenemos que hacer ante un http.
+#define el comportamiento de lo que tenemos que hacer ante un http.
 class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 
     #Se crea la primera función auxiliar.
@@ -257,7 +257,8 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_header('WWW-Authenticate', 'Basic realm="Mi servidor"')
             self.end_headers()
         elif 'redirect' in self.path:
-            self.send_error(302)
+            print("Redirección a la página principal")
+            self.send_response(301)
             self.send_header('Location', 'http://localhost:'+str(PORT))
             self.end_headers()
 
